@@ -12,6 +12,6 @@ app.use(express.json());
 app.use("/api/contacts", require("./routes/contactRoutes"))
 
 app.listen(port, () => {
-    console.log("listening on port", port)
+    console.log("listening on port=", port)
 })
 console.log("in express")
