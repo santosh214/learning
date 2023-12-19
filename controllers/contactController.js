@@ -10,8 +10,15 @@ const getContacts = (req, res) => {
 //  @route POST /api/contacts
 //  @access public
 const createContact = (req, res) => {
+    const { name, email, phone } = req.body
+
+    if (!name || !email || !phone) {
+         res.status(400)
+        // .json({ msg: 'Please fill all fields' })
+        throw new Error('Please fill all fieldds')
+    }
     console.log("req:", req.body)
-    
+
     res.status(201).json({ msg: 'Create Contacts' })
 }
 
