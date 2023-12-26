@@ -1,9 +1,13 @@
 const asyncHandler = require('express-async-handler')
+const Contacts = require('../models/contactModel')
+
 // @description Get All Contacts
 //  @route Get /api/contacts
 //  @access public
 const getContacts = asyncHandler(async (req, res) => {
-    res.status(200).json({ msg: 'Get All Contacts' })
+    const contacts = await Contacts.find()
+    console.log("contacts:", contacts)
+    res.status(200).json(contacts)
 })
 
 
@@ -19,6 +23,10 @@ const createContact = asyncHandler(async (req, res) => {
         throw new Error('Please fill all fieldds')
     }
     console.log("req:", req.body)
+    const contact = await Contacts.create({
+        name, email, phone
+    })
+    console.log("contact:", contact)
 
     res.status(201).json({ msg: 'Create Contacts' })
 })
